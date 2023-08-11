@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private EditText txtDocument;
 
+    AlertDialog loginDialogo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // aqui comparar con la base de datos
 
-        createLoginDialogo().show();
+        loginDialogo = createLoginDialogo();
+
+        loginDialogo.show();
 
         //Intent signInIntent = new Intent(this, HomeActivity.class);
         //startActivity(signInIntent);
@@ -99,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     Intent signInIntent = new Intent(this, HomeActivity.class);
                     startActivity(signInIntent);
+                    loginDialogo.dismiss();
                 }
 
         );

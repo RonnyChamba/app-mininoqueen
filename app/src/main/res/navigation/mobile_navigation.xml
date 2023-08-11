@@ -22,4 +22,16 @@
         android:name="com.app.mininoqueen.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_pedidos"
+        android:name="com.app.mininoqueen.ui.pedido.PedidoFragment"
+        android:label="@string/menu_pedidos"
+        tools:layout="@layout/fragment_pedidos" />
+
+    <fragment
+        android:id="@+id/nav_cuidado_personal"
+        android:name="com.app.mininoqueen.ui.cuidado.CuidadoPersonalFragment"
+        android:label="@string/menu_cuidado_personal"
+        tools:layout="@layout/fragment_cuidado_personal" />
 </navigation>
