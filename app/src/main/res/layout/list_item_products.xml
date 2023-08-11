@@ -7,67 +7,42 @@
     android:layout_marginBottom="5dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
-        <LinearLayout
-            android:id="@+id/linearLayoutLeft"
-            android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:id="@+id/linearLayoutLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageViewProduct"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/side_nav_bar" />
+
+        <TextView
+            android:id="@+id/item_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/imageViewProduct"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:src="@drawable/side_nav_bar" />
-
-            <TextView
-                android:id="@+id/item_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Title"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/item_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Description"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-
-        <!--        <LinearLayout-->
-        <!--            android:id="@+id/linearLayoutRight"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_weight="1"-->
-        <!--            android:orientation="vertical">-->
-
-        <!--            <ImageView-->
-        <!--                android:id="@+id/imageView_two"-->
-        <!--                android:layout_width="64dp"-->
-        <!--                android:layout_height="64dp"-->
-        <!--                android:src="@drawable/side_nav_bar" />-->
-
-        <!--            <TextView-->
-        <!--                android:id="@+id/item_title_two"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:text="Nuevo Producto"-->
-        <!--                android:textSize="18sp"-->
-        <!--                android:textStyle="bold" />-->
-
-        <!--            <TextView-->
-        <!--                android:id="@+id/item_description_two"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:text="Agrega una descripción"-->
-        <!--                android:textSize="14sp" />-->
-        <!--        </LinearLayout>-->
-
-
-
+        <TextView
+            android:id="@+id/item_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="14sp" />
+        <Button
+            android:id="@+id/btnAddToCart"
+            android:layout_width="match_parent"
+            android:drawableLeft="@drawable/baseline_shopping_cart_checkout_24"
+            android:layout_height="wrap_content"
+            android:text="Comprar"
+            />
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
 

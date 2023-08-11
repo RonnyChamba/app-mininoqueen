@@ -34,4 +34,10 @@
         android:name="com.app.mininoqueen.ui.cuidado.CuidadoPersonalFragment"
         android:label="@string/menu_cuidado_personal"
         tools:layout="@layout/fragment_cuidado_personal" />
+
+    <fragment
+        android:id="@+id/nav_review_checkout"
+        android:name="com.app.mininoqueen.ui.ventas.VentaFragment"
+        android:label="@string/menu_detalle_pedido"
+        tools:layout="@layout/fragment__venta" />
 </navigation>

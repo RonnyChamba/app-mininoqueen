@@ -1,9 +1,14 @@
 package com.app.mininoqueen;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.app.mininoqueen.modelos.Cliente;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -15,11 +20,27 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.mininoqueen.databinding.ActivityHomeBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomeBinding binding;
+
+    private Context context;
+
+    private FirebaseFirestore db = null;
+
+    private FirebaseUser user;
+
+    private static final String COLLECTION_NAME = "clientes";
+
+    private Cliente cliente;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +49,10 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        context = this;
         setSupportActionBar(binding.appBarHome.toolbar);
+
+        db = FirebaseFirestore.getInstance();
         binding.appBarHome.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,6 +71,20 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        verifySignIn();
+    }
+
+    private void setValueDefault() {
+
+        // Acceder al layout nav_header_home
+        View navHeader = binding.navView.getHeaderView(0);
+
+        // Acceder a los widgets dentro de nav_header_home
+        TextView fullNameUser = navHeader.findViewById(R.id.textViewFullName);
+        TextView emailUser = navHeader.findViewById(R.id.textViewEmail);
+        fullNameUser.setText(cliente.getNombre());
+        emailUser.setText(cliente.getDocumento());
     }
 
     @Override
@@ -61,5 +99,49 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    private void verifySignIn() {
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        // verificar si el usuario esta logueado
+        if (user != null) {
+
+            String uidUser = user.getUid();
+
+            String documento = Objects.requireNonNull(user.getEmail()).substring(0, user.getEmail().indexOf("@"));
+
+
+//            Toast.makeText(this, "email:" + uidUser, Toast.LENGTH_SHORT).show();
+
+            db.collection(COLLECTION_NAME).whereEqualTo("documento", documento).get().addOnSuccessListener(
+                    documentSnapshot -> {
+                        if (!documentSnapshot.isEmpty()) {
+                            if (documentSnapshot.getDocuments().size() > 0) {
+
+                                cliente = documentSnapshot.getDocuments().get(0).toObject(Cliente.class);
+                                if (cliente != null) {
+                                    setValueDefault();
+
+                                } else {
+                                    Toast.makeText(context, "No se pudo obtener el cliente", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(context, "No se pudo obtener el cliente", Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        }
+                    }
+            );
+        } else {
+
+            // si no esta logueado, redirigir al login
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+
+        }
     }
 }

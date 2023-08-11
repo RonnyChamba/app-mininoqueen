@@ -1,24 +1,34 @@
 package com.app.mininoqueen.modelos;
 
-import java.util.Date;
+import com.google.firebase.Timestamp;
 
-public class Product {
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Map;
+
+public class Product implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String uid;
-    private String categoria;
+    private Map<String, Object> categoria;
     private String codigo;
     private String descripcion;
     private String imagen;
     private Double precioCompra;
     private Double precioVenta;
     private int stock;
-    private Date fecha;
+//    private Date fecha;
+
+    private Timestamp fecha;
     private int ventas;
 
     public Product() {
     }
 
-    public Product(String uid, String categoria, String codigo, String descripcion, String imagen, Double precioCompra, Double precioVenta, int stock, Date fecha, int ventas) {
+    public Product(String uid, Map<String, Object> categoria, String codigo,
+                   String descripcion, String imagen, Double
+                           precioCompra, Double precioVenta, int stock, Timestamp fecha, int ventas) {
         this.uid = uid;
         this.categoria = categoria;
         this.codigo = codigo;
@@ -39,11 +49,11 @@ public class Product {
         this.uid = uid;
     }
 
-    public String getCategoria() {
+    public Map<String, Object> getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Map<String, Object> categoria) {
         this.categoria = categoria;
     }
 
@@ -95,11 +105,11 @@ public class Product {
         this.stock = stock;
     }
 
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 

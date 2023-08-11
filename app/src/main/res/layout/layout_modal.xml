@@ -6,42 +6,62 @@
     android:orientation="vertical"
     android:padding="20sp">
 
-
-    <TextView
-        android:id="@+id/info_text"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:text="Ingrese código intermediario"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/size_titles" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/crear_boton"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
-        android:background="#C8C9CB" />
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
 
 
-    <EditText
-        android:id="@+id/nombre_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:hint="Ejm: 1450312015"
-        android:inputType="textPersonName"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Ingrese código intermediario"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="@dimen/size_titles" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/crear_boton"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="#C8C9CB" />
+
+
+        <EditText
+            android:id="@+id/code_intermediario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="Ejm: 1450312015"
+            android:inputType="textPersonName"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/entrar_boton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/color_base"
+            android:text="Validar código"
+            android:textColor="#000" />
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/entrar_boton"
+        android:id="@+id/cancelar_boton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="@color/color_base"
-        android:text="Validar código"
+        android:text="Cancelar"
         android:textColor="#000" />
+
+
+
 </LinearLayout>

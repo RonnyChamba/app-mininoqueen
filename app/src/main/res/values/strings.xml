@@ -20,8 +20,17 @@
     <string name="menu_gallery">Maquillaje rostro</string>
     <string name="menu_slideshow">Maquillaje ojos</string>
     <string name="menu_option_4">Labios</string>
-    <string name="menu_cuidado_personal">Cuidado personal</string>
+    <string name="menu_cuidado_personal">Cuidado corporal</string>
     <string name="menu_pedidos">Pedidos</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_detalle_pedido">Detalles del Pedido</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>

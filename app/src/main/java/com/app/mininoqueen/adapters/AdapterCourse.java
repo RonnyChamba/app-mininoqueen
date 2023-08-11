@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.mininoqueen.R;
 import com.app.mininoqueen.modelos.Product;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -26,12 +28,15 @@ public class AdapterCourse extends RecyclerView.Adapter<AdapterCourse.ViewHolder
     private LayoutInflater inflater;
     private View.OnClickListener listener;
 
+    private Context context;
+
     public AdapterCourse(
             Context context,
             List<Product> courses) {
 
         this.inflater = LayoutInflater.from(context);
         this.courses = courses;
+        this.context = context;
 
     }
 
@@ -80,6 +85,8 @@ public class AdapterCourse extends RecyclerView.Adapter<AdapterCourse.ViewHolder
 
         private final CardView cardView;
 
+        private Button btnReview;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -87,6 +94,19 @@ public class AdapterCourse extends RecyclerView.Adapter<AdapterCourse.ViewHolder
             textDescription = itemView.findViewById(R.id.item_description);
             imageProduct = itemView.findViewById(R.id.imageViewProduct);
             cardView = itemView.findViewById(R.id.card_view);
+            btnReview = itemView.findViewById(R.id.btnAddToCart);
+
+            // here the listener of the button that is in the list item is configured
+            btnReview.setOnClickListener(v -> {
+                if (buttonClickListener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Product planification = courses.get(position);
+
+                        buttonClickListener.onButtonClicked(planification);
+                    }
+                }
+            });
         }
 
         public void setData(Product course) {
@@ -108,9 +128,26 @@ public class AdapterCourse extends RecyclerView.Adapter<AdapterCourse.ViewHolder
 
             cardView.setLayoutParams(params);
 
+            // Cargar la imagen en el ImageView usando Glide
+            Glide.with(context)
+                    .load(course.getImagen())
+                    .into(imageProduct);
+            textTitle.setText(course.getDescripcion());
+            textDescription.setText("$ " + course.getPrecioVenta());
+
         }
 
 
     }
+
+    public void setOnButtonClickListener(OnButtonClickListener listener) {
+        this.buttonClickListener = listener;
+    }
+
+    public interface OnButtonClickListener {
+        void onButtonClicked(Product product);
+    }
+
+    private OnButtonClickListener buttonClickListener;
 
 }

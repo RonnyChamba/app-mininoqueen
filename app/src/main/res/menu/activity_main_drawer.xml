@@ -25,6 +25,5 @@
             android:id="@+id/nav_pedidos"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_pedidos" />
-
     </group>
 </menu>
