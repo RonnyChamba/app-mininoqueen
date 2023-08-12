@@ -99,9 +99,10 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
 
         });
 
+        setStockInitial();
+
         return root;
     }
-    // metod para
 
 
     private void eventkey() {
@@ -222,10 +223,14 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
                     // Producto ya existe en la venta
                     if (Objects.equals(item.get("uid"), product.getUid())) {
                         // actualizar cantidad y total
+
+                        // cantidad actual del producto
                         Integer cantidad = Integer.parseInt(item.get("cantidad").toString());
+                        Integer stock = Integer.parseInt(item.get("stock").toString());
                         item.put("cantidad", cantidad + amount);
                         item.put("total", (cantidad + amount) * product.getPrecioVenta());
-                        item.put("stock", product.getStock() - (cantidad + amount));
+//                        item.put("stock", product.getStock() - (cantidad + amount));
+                        item.put("stock", stock - amount);
 
                         Snackbar.make(view, "Producto agregado", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
@@ -329,6 +334,8 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
 
             addProductToCart(view, productSelected, Objects.requireNonNull(map.get("cantidad")).toString());
 
+//            productSelected.setStock(0);
+
         });
     }
 
@@ -353,5 +360,56 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
             }
         }
         return false;
+    }
+
+    /**
+     * Permite mostrar el stock inicial del producto, se verifica si ya esta el producto en el carrito
+     * y se revisa el stock del producto
+     */
+    private void setStockInitial() {
+
+
+        // verificar si el producto principal(seleccionado) y los sugeridos ya estan  en el carrito actual
+
+        /**
+         * 1) Verificar si ya existe creado un pedido
+         *      * Si existe, verificar si el producto ya esta en el carrito
+         */
+
+        if (DataCard.pedido != null) {
+
+            // verificar si el producto principal ya esta en el carrito
+            if (alreadyExists(product.getUid())) {
+
+                for (Map<String, Object> item : DataCard.pedido.getProducto()) {
+                    if (Objects.equals(item.get("uid"), product.getUid())) {
+                        txtVentaStock.setText(Objects.requireNonNull(item.get("stock")).toString());
+
+                        // actualizar el stock del producto
+                        product.setStock(Integer.parseInt(Objects.requireNonNull(item.get("stock")).toString()));
+                        Log.i("TAG", "setStockInitial: " + product.getStock());
+                    }
+                }
+            }  // no Hacer nada si no esta en el carrito
+
+            verifyProductSugeridos();
+
+        }
+
+    }
+
+    private void verifyProductSugeridos() {
+
+        // verificar si los productos sugeridos ya estan en el carrito
+        for (Product product : productListSugeridos) {
+            if (alreadyExists(product.getUid())) {
+                for (Map<String, Object> item : DataCard.pedido.getProducto()) {
+                    if (Objects.equals(item.get("uid"), product.getUid())) {
+                        product.setStock(Integer.parseInt(Objects.requireNonNull(item.get("stock")).toString()));
+                        Log.i("TAG", "setStockInitial: " + product.getStock());
+                    }
+                }
+            }
+        }
     }
 }

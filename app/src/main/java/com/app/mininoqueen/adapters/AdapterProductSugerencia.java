@@ -16,11 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.mininoqueen.R;
 import com.app.mininoqueen.modelos.Product;
+import com.app.mininoqueen.util.DataCard;
 import com.bumptech.glide.Glide;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class AdapterProductSugerencia extends RecyclerView.Adapter<AdapterProductSugerencia.ViewHolder> implements
 
@@ -161,14 +163,39 @@ public class AdapterProductSugerencia extends RecyclerView.Adapter<AdapterProduc
             });
         }
 
-        public void setData(Product course) {
+        public void setData(Product product) {
 
             Glide.with(context)
-                    .load(course.getImagen())
+                    .load(product.getImagen())
                     .into(imageProduct);
-            textTitle.setText(course.getDescripcion());
-            textDescription.setText("" + course.getPrecioVenta());
-            txtVentaStockSug.setText("" + course.getStock());
+
+            textTitle.setText(product.getDescripcion());
+            textDescription.setText("" + product.getPrecioVenta());
+
+            // verificar si existe un pedido activo y si existe almenos un producto en el pedido activo
+            if (DataCard.pedido != null && DataCard.pedido.getProducto().size() > 0) {
+
+                // verificar si en el pedido activo existe el producto que se esta mostrando
+                final String uidProductCurrent = product.getUid();
+
+                boolean exist = false;
+                for (Map<String, Object> item : DataCard.pedido.getProducto()) {
+                    if (Objects.equals(item.get("uid"), uidProductCurrent)) {
+                        int stock = Integer.parseInt(item.get("stock").toString());
+                        txtVentaStockSug.setText("" + stock);
+                        product.setStock(stock);
+                        exist = true;
+                    }
+                }
+
+                if (!exist) {
+                    txtVentaStockSug.setText("" + product.getStock());
+                }
+
+            } else {
+                txtVentaStockSug.setText("" + product.getStock());
+            }
+
 
         }
 
