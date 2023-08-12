@@ -8,7 +8,10 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.mininoqueen.databinding.ActivityHomeBinding;
 import com.app.mininoqueen.modelos.Cliente;
+import com.app.mininoqueen.modelos.Usuario;
+import com.app.mininoqueen.util.DataCard;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -19,7 +22,6 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.app.mininoqueen.databinding.ActivityHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -53,13 +55,10 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(binding.appBarHome.toolbar);
 
         db = FirebaseFirestore.getInstance();
-        binding.appBarHome.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        setSupportActionBar(binding.appBarHome.toolbar);
+        binding.appBarHome.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -112,9 +111,7 @@ public class HomeActivity extends AppCompatActivity {
 
             String documento = Objects.requireNonNull(user.getEmail()).substring(0, user.getEmail().indexOf("@"));
 
-
-//            Toast.makeText(this, "email:" + uidUser, Toast.LENGTH_SHORT).show();
-
+            // buscar el cliente
             db.collection(COLLECTION_NAME).whereEqualTo("documento", documento).get().addOnSuccessListener(
                     documentSnapshot -> {
                         if (!documentSnapshot.isEmpty()) {
@@ -123,6 +120,7 @@ public class HomeActivity extends AppCompatActivity {
                                 cliente = documentSnapshot.getDocuments().get(0).toObject(Cliente.class);
                                 if (cliente != null) {
                                     setValueDefault();
+                                    DataCard.cliente = cliente;
 
                                 } else {
                                     Toast.makeText(context, "No se pudo obtener el cliente", Toast.LENGTH_SHORT).show();
@@ -135,6 +133,7 @@ public class HomeActivity extends AppCompatActivity {
                         }
                     }
             );
+
         } else {
 
             // si no esta logueado, redirigir al login

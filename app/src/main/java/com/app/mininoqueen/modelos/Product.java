@@ -3,7 +3,9 @@ package com.app.mininoqueen.modelos;
 import com.google.firebase.Timestamp;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public class Product implements Serializable {
@@ -22,6 +24,11 @@ public class Product implements Serializable {
 
     private Timestamp fecha;
     private int ventas;
+
+    private List<String> productosSugeridos = new ArrayList<>();
+
+    // Cada producto pertenece a un intermediario
+    private String intermedio;
 
     public Product() {
     }
@@ -119,5 +126,21 @@ public class Product implements Serializable {
 
     public void setVentas(int ventas) {
         this.ventas = ventas;
+    }
+
+    public List<String> getProductosSugeridos() {
+        return productosSugeridos;
+    }
+
+    public void setProductosSugeridos(List<String> productosSugeridos) {
+        this.productosSugeridos = productosSugeridos;
+    }
+
+    public String getIntermedio() {
+        return intermedio;
+    }
+
+    public void setIntermedio(String intermedio) {
+        this.intermedio = intermedio;
     }
 }

@@ -2,6 +2,7 @@ package com.app.mininoqueen;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -15,9 +16,12 @@ import android.view.View;
 
 import com.app.mininoqueen.databinding.ActivityMainBinding;
 import com.app.mininoqueen.modelos.AuthCredential;
+import com.app.mininoqueen.modelos.Usuario;
+import com.app.mininoqueen.util.DataCard;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private FirebaseAuth mAuth;
 
+    private FirebaseFirestore db = null;
+
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        db = FirebaseFirestore.getInstance();
+        context = this;
 
         binding.btnSigIn.setOnClickListener(this);
 
@@ -140,10 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         txtCodeInterno.setError("El código es requerido");
                         return;
                     }
-
-                    Intent signInIntent = new Intent(this, HomeActivity.class);
-                    startActivity(signInIntent);
-                    loginDialogo.dismiss();
+                    verifyCodeIntermediario(txtCodeInterno.getText().toString());
                 }
 
         );
@@ -182,4 +189,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
     }
 
+
+    private void verifyCodeIntermediario(String codeIntermediario) {
+
+
+        // buscar el intermediario
+
+        db.collection("usuarios").whereEqualTo("codigo", codeIntermediario).get().addOnSuccessListener(
+                documentSnapshot -> {
+                    if (!documentSnapshot.isEmpty()) {
+                        if (documentSnapshot.getDocuments().size() > 0) {
+
+                            Usuario usuario = documentSnapshot.getDocuments().get(0).toObject(Usuario.class);
+                            if (usuario != null) {
+
+                                // guardar el usuario intermedio
+                                DataCard.usuario = usuario;
+                                Intent signInIntent = new Intent(this, HomeActivity.class);
+                                startActivity(signInIntent);
+                                //Toast.makeText(context, "Bienvenido " + usuario.getNombre(), Toast.LENGTH_SHORT).show();
+                                loginDialogo.dismiss();
+
+                            } else {
+                                loginDialogo.dismiss();
+                                Toast.makeText(context, "No se pudo obtener el intermediario", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            loginDialogo.dismiss();
+                            Toast.makeText(context, "No se pudo obtener el intermediario", Toast.LENGTH_SHORT).show();
+                        }
+                    } else
+                        Toast.makeText(context, "Intermediario no registrado", Toast.LENGTH_SHORT).show();
+                }
+        );
+
+    }
 }

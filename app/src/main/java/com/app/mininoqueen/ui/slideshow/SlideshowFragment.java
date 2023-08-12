@@ -38,6 +38,7 @@ public class SlideshowFragment extends Fragment {
     private NavController navController;
     public static final String COLLECTION_NAME = "productos";
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         SlideshowViewModel slideshowViewModel =
@@ -142,9 +143,7 @@ public class SlideshowFragment extends Fragment {
 
             //int idNav = ConstantApp.isAdmin ? R.id.nav_review_planning : R.id.nav_upload_planning;
             navController.navigate(R.id.nav_review_checkout, bundle);
-
-
         });
-
     }
+
 }

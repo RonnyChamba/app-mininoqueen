@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
 
         <TextView
@@ -38,8 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="Ejm: 1450312015"
+            android:hint="Ejm: 263014"
             android:inputType="textPersonName"
+            android:text="123456"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
@@ -61,7 +62,6 @@
         android:backgroundTint="@color/color_base"
         android:text="Cancelar"
         android:textColor="#000" />
-
 
 
 </LinearLayout>

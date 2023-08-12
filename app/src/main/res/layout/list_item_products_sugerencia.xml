@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?><!-- cardview_item.xml -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="5dp"
-    tools:context=".ui.ventas.VentaFragment">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -20,37 +22,39 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageVentaPro"
+                android:id="@+id/imageVentaProSug"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:src="@drawable/side_nav_bar" />
 
             <TextView
-                android:id="@+id/txtVentaTitle"
+                android:id="@+id/txtVentaTitleSug"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Title"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtVentaPrecio"
+                    android:id="@+id/txtVentaPrecioSug"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/baseline_attach_money_24"
-                    android:text="0"
+                    android:text="D"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
 
                 <TextView
-                    android:id="@+id/txtVentaStock"
+                    android:id="@+id/txtVentaStockSug"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -58,9 +62,7 @@
                     android:text="10"
                     android:textSize="14sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
-
 
         </LinearLayout>
 
@@ -70,15 +72,22 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+            </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/title_cantidad"
+                android:text="Cantidad"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/txtVentCantidad"
+                android:id="@+id/txtVentCantidadSug"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="0"
@@ -86,16 +95,16 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/txtVentaTotal"
+                android:id="@+id/txtVentaTotalSug"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:text="0.0"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/btnVentaAdd"
+                android:id="@+id/btnVentaAddSug"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -105,25 +114,6 @@
 
     </LinearLayout>
 
-    <com.google.android.material.divider.MaterialDivider
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/title_productos_sugeridos"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleViewVenta"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp" />
+</androidx.cardview.widget.CardView>
 
 
-
-</LinearLayout>
