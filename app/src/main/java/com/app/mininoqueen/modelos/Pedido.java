@@ -106,6 +106,14 @@ public class Pedido {
         this.fecha = fecha;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
         return "Pedido{" +

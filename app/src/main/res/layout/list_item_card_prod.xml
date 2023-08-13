@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?><!-- cardview_item.xml -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/image_card"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/side_nav_bar" />
+
+        <TextView
+            android:id="@+id/item_title_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Labios que si que no"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_price_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$2"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/item_amount_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/item_total_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btn_remove_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:text="Quitar" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+

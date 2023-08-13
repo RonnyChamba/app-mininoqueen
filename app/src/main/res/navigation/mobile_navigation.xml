@@ -40,4 +40,10 @@
         android:name="com.app.mininoqueen.ui.ventas.VentaFragment"
         android:label="@string/menu_detalle_pedido"
         tools:layout="@layout/fragment__venta" />
+
+    <fragment
+        android:id="@+id/nav_review_card"
+        android:name="com.app.mininoqueen.ui.card.CardFragment"
+        android:label="@string/menu_detalle_card"
+        tools:layout="@layout/fragment_card" />
 </navigation>
