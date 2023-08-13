@@ -3,6 +3,7 @@ package com.app.mininoqueen;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.DragEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -39,6 +40,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = null;
 
+    private FirebaseAuth mAuth;
+
     private FirebaseUser user;
 
     private static final String COLLECTION_NAME = "clientes";
@@ -67,10 +70,30 @@ public class HomeActivity extends AppCompatActivity {
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
+        // Escuchar los cambios en la autenticacion
+        navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(menuItem -> {
+
+
+            mAuth.signOut();
+            drawer.closeDrawers();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        });
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_pedidos, R.id.nav_cuidado_personal)
+                R.id.nav_home, R.id.nav_gallery,
+                R.id.nav_slideshow,
+                R.id.nav_pedidos,
+                R.id.nav_cuidado_personal,
+                R.id.nav_logout)
                 .setOpenableLayout(drawer)
                 .build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
@@ -79,6 +102,7 @@ public class HomeActivity extends AppCompatActivity {
 
         verifySignIn();
     }
+
 
     private void setValueDefault() {
 
@@ -150,6 +174,22 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+//    //Manejar el click del menu lateral del drawer
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.nav_item_1:
+//                // Acción cuando se selecciona el item 1 del drawer
+//                return true;
+//            case R.id.nav_item_2:
+//                // Acción cuando se selecciona el item 2 del drawer
+//                return true;
+//            default:
+//                return false;
+//        }
+//    }
+
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -159,4 +199,5 @@ public class HomeActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -23,6 +23,7 @@
     <string name="menu_option_4">Labios</string>
     <string name="menu_cuidado_personal">Cuidado corporal</string>
     <string name="menu_pedidos">Pedidos</string>
+    <string name="menu_logout">Salir</string>
     <string name="menu_detail_pedidos">Detalle Pedidos</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="menu_detalle_pedido">Detalles del Pedido</string>
