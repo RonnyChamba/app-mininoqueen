@@ -38,16 +38,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class VentaFragment extends Fragment implements View.OnClickListener {
-
 
     private FragmentVentaBinding binding;
 
@@ -94,9 +87,7 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
         listProductSugeridos();
 
         viewModel.getData().observe(getViewLifecycleOwner(), listProducts -> {
-
             drawerProductSuggered();
-
         });
 
         setStockInitial();
@@ -244,7 +235,8 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
 
             // crear venta
             DataCard.pedido = new Pedido();
-            String uid = UUID.randomUUID().toString();
+            // para generar un codigo unico no repetible
+            String uid = UUID.randomUUID().toString().substring(0, 10);
             DataCard.pedido.setFecha(Timestamp.now());
             DataCard.pedido.setCodigo(uid);
             DataCard.pedido.setUid(uid);
@@ -343,6 +335,7 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
 
         Map<String, Object> detailItem = new HashMap<>();
         detailItem.put("cantidad", amount);
+        detailItem.put("codigo", product.getCodigo());
         detailItem.put("descripcion", product.getDescripcion());
         detailItem.put("precio", product.getPrecioVenta());
         detailItem.put("total", amount * product.getPrecioVenta());

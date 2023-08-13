@@ -1,10 +1,15 @@
 package com.app.mininoqueen.modelos;
 
+import com.google.firebase.Timestamp;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Pedido {
+public class Pedido implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String uid;
 
@@ -21,7 +26,7 @@ public class Pedido {
     private Double total;
     private List<Map<String, Object>> producto = new ArrayList<>();
     // define un campo de tipo timestamp
-    private Object fecha;
+    private Timestamp fecha;
 
     public Pedido() {
     }
@@ -98,11 +103,11 @@ public class Pedido {
         this.producto = producto;
     }
 
-    public Object getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Object fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 

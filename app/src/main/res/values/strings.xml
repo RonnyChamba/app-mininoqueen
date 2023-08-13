@@ -23,6 +23,7 @@
     <string name="menu_option_4">Labios</string>
     <string name="menu_cuidado_personal">Cuidado corporal</string>
     <string name="menu_pedidos">Pedidos</string>
+    <string name="menu_detail_pedidos">Detalle Pedidos</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="menu_detalle_pedido">Detalles del Pedido</string>
     <string name="menu_detalle_card">Pedido Actual</string>
@@ -37,4 +38,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_productos_sugeridos">Productos Sugeridos</string>
     <string name="title_cantidad">Cantidad</string>
+    <string name="report_planned_date">Seleccione una fecha</string>
 </resources>

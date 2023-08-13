@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
-    tools:context=".ui.pedido.PedidoFragment">
-
+    tools:context="ui.detailpedido.DetailPedidoFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +14,6 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/etPlannedDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -24,12 +22,6 @@
             android:hint="@string/report_planned_date"
             android:inputType="date"
             android:maxLines="1" />
-
-        <ImageButton
-            android:id="@+id/iconButtonUpdate"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_update_24" />
 
     </LinearLayout>
 
@@ -48,7 +40,7 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycleViewPedidos"
+                android:id="@+id/recycleViewDetailPedidos"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
@@ -63,23 +55,6 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!--  Layout cuando NO existe pedidos  -->
-
-        <LinearLayout
-            android:id="@+id/layoutPedidosDataEmpty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="No hay pedidos disponibles"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
     </LinearLayout>
 
 

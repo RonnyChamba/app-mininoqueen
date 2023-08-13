@@ -27,7 +27,19 @@
         android:id="@+id/nav_pedidos"
         android:name="com.app.mininoqueen.ui.pedido.PedidoFragment"
         android:label="@string/menu_pedidos"
-        tools:layout="@layout/fragment_pedidos" />
+        tools:layout="@layout/fragment_pedidos">
+
+        <action
+            android:id="@+id/action_pedido_to_details"
+            app:destination="@+id/nav_detail_pedidos" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_detail_pedidos"
+        android:name="com.app.mininoqueen.ui.detailpedido.DetailPedidoFragment"
+        android:label="@string/menu_detail_pedidos"
+        tools:layout="@layout/fragment_detail_pedidos" />
 
     <fragment
         android:id="@+id/nav_cuidado_personal"
@@ -39,7 +51,14 @@
         android:id="@+id/nav_review_checkout"
         android:name="com.app.mininoqueen.ui.ventas.VentaFragment"
         android:label="@string/menu_detalle_pedido"
-        tools:layout="@layout/fragment__venta" />
+        tools:layout="@layout/fragment__venta">
+
+        <action
+            android:id="@+id/action_venta_to_blankFragment_card"
+            app:destination="@+id/nav_review_card" />
+
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_review_card"
