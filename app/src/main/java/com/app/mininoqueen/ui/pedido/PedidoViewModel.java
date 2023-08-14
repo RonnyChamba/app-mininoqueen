@@ -53,16 +53,15 @@ public class PedidoViewModel extends ViewModel {
 
         if (date == null) {
             db.collection(NAME_COLLECTION)
+                    // obtiene los pedidos del usuario logueado
                     .whereEqualTo("idCliente.uid", DataCard.cliente.getUid())
                     .whereEqualTo("estado", false)
                     .get().addOnCompleteListener(task -> {
                                 if (task.isSuccessful()) {
-
                                     List<Pedido> pedidos = new ArrayList<>();
                                     for (DocumentSnapshot document : task.getResult()) {
                                         pedidos.add(document.toObject(Pedido.class));
                                     }
-
                                     listMutableLiveData.setValue(pedidos);
                                 } else {
                                     Log.d("TAG", "Error getting documents: ", task.getException());
@@ -70,7 +69,6 @@ public class PedidoViewModel extends ViewModel {
                             }
                     );
         } else {
-
 
 
             Calendar calendarStart = Calendar.getInstance();

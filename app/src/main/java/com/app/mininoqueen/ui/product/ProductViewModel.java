@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 import com.app.mininoqueen.modelos.Category;
 import com.app.mininoqueen.modelos.Pedido;
 import com.app.mininoqueen.modelos.Product;
+import com.app.mininoqueen.util.DataCard;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -54,6 +55,7 @@ public class ProductViewModel extends ViewModel {
             db.collection(NAME_COLLECTION)
                     .whereEqualTo("categoria.uid", category.getUid())
                     .whereEqualTo("categoria.subcategoria", subCategoria)
+                    .whereEqualTo("intermediario", DataCard.usuario.getCodigo())
                     .get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
@@ -72,6 +74,7 @@ public class ProductViewModel extends ViewModel {
         } else {
             db.collection(NAME_COLLECTION)
                     .whereEqualTo("categoria.uid", category.getUid())
+                    .whereEqualTo("intermediario", DataCard.usuario.getCodigo())
                     .get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
