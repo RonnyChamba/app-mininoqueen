@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?><!-- cardview_item.xml -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_category"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageViewCategory"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/side_nav_bar" />
+
+        <TextView
+            android:id="@+id/itemTitleCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/itemSubcCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnViewProdCate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Ver Productos" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+

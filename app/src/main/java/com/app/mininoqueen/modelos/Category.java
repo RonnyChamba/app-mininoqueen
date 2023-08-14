@@ -1,35 +1,48 @@
 package com.app.mininoqueen.modelos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Category {
+public class Category implements Serializable {
 
-    private String category;
+    private static final long serialVersionUID = 1L;
+
+    private String categoria;
 
     private String fecha;
 
     private String uid;
 
+    private List<Subcategoria> subcategorias = new ArrayList<>();
     private List<Map<String, Object>> productos = new ArrayList<>();
+
 
     public Category() {
     }
 
-    public Category(String category, String fecha, String uid, List<Map<String, Object>> productos) {
-        this.category = category;
+    public Category(String categoria, String fecha, String uid, List<Map<String, Object>> productos) {
+        this.categoria = categoria;
         this.fecha = fecha;
         this.uid = uid;
         this.productos = productos;
     }
 
-    public String getCategory() {
-        return category;
+    public List<Subcategoria> getSubcategorias() {
+        return subcategorias;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setSubcategorias(List<Subcategoria> subcategorias) {
+        this.subcategorias = subcategorias;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public String getFecha() {
@@ -59,6 +72,6 @@ public class Category {
 
     @Override
     public String toString() {
-        return category;
+        return categoria;
     }
 }

@@ -17,11 +17,12 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="menu_home">Skincare</string>
-    <string name="menu_gallery">Maquillaje rostro</string>
+    <string name="menu_home">Categorias</string>
+    <string name="menu_gallery">Carrito</string>
     <string name="menu_slideshow">Maquillaje ojos</string>
+    <string name="menu_product">Producto Por Cate</string>
     <string name="menu_option_4">Labios</string>
-    <string name="menu_cuidado_personal">Cuidado corporal</string>
+    <string name="menu_cuidado_personal">Mis compras</string>
     <string name="menu_pedidos">Pedidos</string>
     <string name="menu_logout">Salir</string>
     <string name="menu_detail_pedidos">Detalle Pedidos</string>

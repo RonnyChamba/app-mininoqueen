@@ -145,15 +145,23 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
         if (arguments != null && arguments.containsKey("product")) {
 
             product = (Product) arguments.getSerializable("product");
-
-
-            Glide.with(this)
-                    .load(product.getImagen())
-                    .into(imageVentaPro);
-
             txtVentaTitle.setText(product.getDescripcion());
             txtVentaPro.setText("" + product.getPrecioVenta());
             txtVentaStock.setText("" + product.getStock());
+
+            String url = product.getImagen() == null ? "" : product.getImagen();
+
+            if (!url.isBlank() && !url.equalsIgnoreCase("null")) {
+                Glide.with(this)
+                        .load(product.getImagen())
+                        .into(imageVentaPro);
+            } else {
+
+                Glide.with(this)
+                        .load(R.drawable.ic_launcher_background)
+                        .into(imageVentaPro);
+            }
+
         } else {
             Toast.makeText(getContext(), "No se pudo obtener el producto", Toast.LENGTH_SHORT).show();
         }

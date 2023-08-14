@@ -8,18 +8,16 @@
     android:padding="5dp"
     tools:context=".ui.home.HomeFragment">
 
-    <Spinner
-        android:id="@+id/spCourses"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:layout_marginBottom="10dp" />
+        android:layout_height="wrap_content"
+        android:text="Categorias registradas" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="5dp" />
-
 
 
 </LinearLayout>
