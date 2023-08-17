@@ -1,15 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
     tools:context=".ui.cuidado.CuidadoPersonalFragment">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleView"
+
+    <LinearLayout
+        android:id="@+id/layoutComprasData"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp" />
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvTotalCompras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="80"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!--  Layout cuando NO existe pedidos  -->
+
+    <LinearLayout
+        android:id="@+id/layoutComprasDataEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No hay compras registradas"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
 </LinearLayout>

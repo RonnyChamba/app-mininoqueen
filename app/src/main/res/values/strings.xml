@@ -41,4 +41,5 @@
     <string name="title_productos_sugeridos">Productos Sugeridos</string>
     <string name="title_cantidad">Cantidad</string>
     <string name="report_planned_date">Seleccione una fecha</string>
+    <string name="producto">Detalles</string>
 </resources>

@@ -1,34 +1,34 @@
 package com.app.mininoqueen.modelos;
 
+import com.google.firebase.Timestamp;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class Venta {
-
-    private String uid;
-
     private String codigo;
+
+    private String codigoTransaccion;
+
+    private boolean estado;
+    private Timestamp fecha;
+
+    private Timestamp fechaVenta;
+
     private Map<String, Object> idCliente;
     private Map<String, Object> idVendedor;
     private Double impuesto;
-
     private String metodoPago;
     private Double neto;
-    private Double total;
     private List<Map<String, Object>> producto = new ArrayList<>();
     // define un campo de tipo timestamp
-    private Object fecha;
+    private Double total;
+    private String uid;
+
+    private Double valorImpuesto;
 
     public Venta() {
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
     }
 
     public String getCodigo() {
@@ -37,6 +37,30 @@ public class Venta {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public String getCodigoTransaccion() {
+        return codigoTransaccion;
+    }
+
+    public void setCodigoTransaccion(String codigoTransaccion) {
+        this.codigoTransaccion = codigoTransaccion;
+    }
+
+    public Timestamp getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Timestamp fecha) {
+        this.fecha = fecha;
+    }
+
+    public Timestamp getFechaVenta() {
+        return fechaVenta;
+    }
+
+    public void setFechaVenta(Timestamp fechaVenta) {
+        this.fechaVenta = fechaVenta;
     }
 
     public Map<String, Object> getIdCliente() {
@@ -79,14 +103,6 @@ public class Venta {
         this.neto = neto;
     }
 
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
     public List<Map<String, Object>> getProducto() {
         return producto;
     }
@@ -95,11 +111,27 @@ public class Venta {
         this.producto = producto;
     }
 
-    public Object getFecha() {
-        return fecha;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setFecha(Object fecha) {
-        this.fecha = fecha;
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public Double getValorImpuesto() {
+        return valorImpuesto;
+    }
+
+    public void setValorImpuesto(Double valorImpuesto) {
+        this.valorImpuesto = valorImpuesto;
     }
 }

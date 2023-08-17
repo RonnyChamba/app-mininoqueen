@@ -249,7 +249,9 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
             DataCard.pedido.setCodigo(uid);
             DataCard.pedido.setUid(uid);
             DataCard.pedido.setIdCliente(Map.of("uid", DataCard.cliente.getUid(),
-                    "nombre", DataCard.cliente.getNombre()));
+                    "nombre", DataCard.cliente.getNombre(),
+                    "documento", DataCard.cliente.getDocumento()));
+
             DataCard.pedido.setIdVendedor(Map.of("uid", DataCard.usuario.getUid(),
                     "nombre", DataCard.usuario.getNombre()));
 

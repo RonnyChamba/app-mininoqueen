@@ -1,5 +1,7 @@
 package com.app.mininoqueen.modelos;
 
+import com.google.firebase.Timestamp;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,8 @@ public class Category implements Serializable {
 
     private String categoria;
 
-    private String fecha;
+    //private String fecha;
+    private Timestamp fecha;
 
     private String uid;
 
@@ -22,7 +25,7 @@ public class Category implements Serializable {
     public Category() {
     }
 
-    public Category(String categoria, String fecha, String uid, List<Map<String, Object>> productos) {
+    public Category(String categoria, Timestamp fecha, String uid, List<Map<String, Object>> productos) {
         this.categoria = categoria;
         this.fecha = fecha;
         this.uid = uid;
@@ -45,11 +48,11 @@ public class Category implements Serializable {
         this.categoria = categoria;
     }
 
-    public String getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 
