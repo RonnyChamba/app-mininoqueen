@@ -83,6 +83,8 @@ public class AdapterCourse extends RecyclerView.Adapter<AdapterCourse.ViewHolder
         private final TextView textDescription;
         private final ImageView imageProduct;
 
+        private TextView itemDetalle;
+
         private final CardView cardView;
 
         private Button btnReview;
@@ -95,6 +97,7 @@ public class AdapterCourse extends RecyclerView.Adapter<AdapterCourse.ViewHolder
             imageProduct = itemView.findViewById(R.id.imageViewProduct);
             cardView = itemView.findViewById(R.id.card_view);
             btnReview = itemView.findViewById(R.id.btnAddToCart);
+            itemDetalle = itemView.findViewById(R.id.item_detalles_pro);
 
             // here the listener of the button that is in the list item is configured
             btnReview.setOnClickListener(v -> {
@@ -129,8 +132,10 @@ public class AdapterCourse extends RecyclerView.Adapter<AdapterCourse.ViewHolder
             cardView.setLayoutParams(params);
             textTitle.setText(course.getDescripcion());
             textDescription.setText("$ " + course.getPrecioVenta());
+            itemDetalle.setText(course.getDetalles() + "");
 
             String url = course.getImagen() == null ? "" : course.getImagen();
+            Log.i("url", url);
 
             if (url.isEmpty() || url.equals("null")) {
                 imageProduct.setImageResource(R.drawable.ic_launcher_background);

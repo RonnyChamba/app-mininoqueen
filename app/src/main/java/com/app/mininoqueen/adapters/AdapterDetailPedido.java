@@ -116,7 +116,7 @@ public class AdapterDetailPedido extends RecyclerView.Adapter<AdapterDetailPedid
             textAmount.setText(item.get("cantidad") == null ? "" : Objects.requireNonNull(item.get("cantidad")).toString());
             textTotal.setText(item.get("total") == null ? "" : Objects.requireNonNull(item.get("total")).toString());
 
-            String url = item.get("image") == null ? "" : Objects.requireNonNull(item.get("image")).toString();
+            String url = item.get("imagen") == null ? "" : Objects.requireNonNull(item.get("imagen")).toString();
             if (!url.isEmpty() && !url.equals("null")) {
                 // Cargar la imagen en el ImageView usando Glide
                 Glide.with(context)

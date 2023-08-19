@@ -13,10 +13,14 @@ public class Category implements Serializable {
 
     private String categoria;
 
+    private String intermediario;
+
     //private String fecha;
     private Timestamp fecha;
 
     private String uid;
+
+    private String imagen;
 
     private List<Subcategoria> subcategorias = new ArrayList<>();
     private List<Map<String, Object>> productos = new ArrayList<>();
@@ -72,6 +76,21 @@ public class Category implements Serializable {
         this.productos = productos;
     }
 
+    public String getIntermediario() {
+        return intermediario;
+    }
+
+    public void setIntermediario(String intermediario) {
+        this.intermediario = intermediario;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
 
     @Override
     public String toString() {

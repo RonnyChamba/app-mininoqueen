@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.mininoqueen.R;
 import com.app.mininoqueen.modelos.Category;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -78,8 +80,11 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ViewHo
 
         private final TextView textTitle;
         private final TextView textTotalSubcategories;
+        private final TextView textDetallesPro;
 
         private final CardView cardView;
+
+        private ImageView imageViewCategory;
 
         private Button btnReview;
 
@@ -88,9 +93,11 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ViewHo
             super(itemView);
 
             textTitle = itemView.findViewById(R.id.itemTitleCategory);
+            textDetallesPro = itemView.findViewById(R.id.item_detalles_pro);
             textTotalSubcategories = itemView.findViewById(R.id.itemSubcCategory);
             cardView = itemView.findViewById(R.id.card_view_category);
             btnReview = itemView.findViewById(R.id.btnViewProdCate);
+            imageViewCategory = itemView.findViewById(R.id.imageViewCategory);
 
             // here the listener of the button that is in the list item is configured
             btnReview.setOnClickListener(v -> {
@@ -124,6 +131,15 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ViewHo
 
             textTitle.setText(category.getCategoria());
             textTotalSubcategories.setText(String.format("%s", category.getSubcategorias().size()));
+
+            if (category.getImagen() != null && !category.getImagen().isEmpty() && !category.getImagen().equals("null")) {
+
+                Glide.with(context)
+                        .load(category.getImagen())
+                        .into(imageViewCategory);
+            } else {
+                imageViewCategory.setImageResource(R.drawable.ic_launcher_background);
+            }
         }
     }
 

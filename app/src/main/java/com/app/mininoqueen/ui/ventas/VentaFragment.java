@@ -25,6 +25,7 @@ import com.app.mininoqueen.adapters.AdapterProductSugerencia;
 import com.app.mininoqueen.databinding.FragmentVentaBinding;
 import com.app.mininoqueen.modelos.Pedido;
 import com.app.mininoqueen.modelos.Product;
+import com.app.mininoqueen.modelos.ProductSugerido;
 import com.app.mininoqueen.util.DataCard;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
@@ -58,7 +59,7 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
 
     private FirebaseFirestore db = null;
 
-    private List<Product> productListSugeridos = new ArrayList<>();
+    private List<ProductSugerido> productListSugeridos = new ArrayList<>();
 
     private Context context;
 
@@ -286,16 +287,17 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
         AtomicInteger count = new AtomicInteger();
 
         if (amountTask > 0) {
-            for (String uid : product.getProductosSugeridos()) {
-                Log.i("TAG", "listProductSugeridos UID: " + uid);
+            for (Map<String, Object> itemData : product.getProductosSugeridos()) {
+                Log.i("TAG", "listProductSugeridos UID: " + itemData.get("uid"));
                 db.collection("productos")
-                        .document(uid)
+                        .document(itemData.get("uid").toString())
                         .get()
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                Product product = task.getResult().toObject(Product.class);
+                                ProductSugerido product = task.getResult().toObject(ProductSugerido.class);
                                 if (product != null) {
                                     product.setUid(task.getResult().getId());
+                                    product.setSugerencias(itemData);
                                     Log.i("TAG", "listProductSugeridos: " + product.getDescripcion());
                                     productListSugeridos.add(product);
                                 } else {
@@ -329,6 +331,8 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
         AdapterProductSugerencia productAdapter = new AdapterProductSugerencia(context, productListSugeridos);
 //        adapterPlanning = new AdapterPlanning(getContext(), planifications);
         recyclerView.setAdapter(productAdapter);
+
+
 
         // click en el boton subir del item
         productAdapter.setOnButtonClickListener((productSelected, map, view) -> {

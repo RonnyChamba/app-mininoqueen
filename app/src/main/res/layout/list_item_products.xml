@@ -34,10 +34,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/item_detalles_pro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detalles"
+            android:layout_marginTop="10dp"
             android:textSize="14sp" />
         <Button
             android:id="@+id/btnAddToCart"
             android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/baseline_shopping_cart_checkout_24"
             android:layout_height="wrap_content"
             android:text="Comprar"

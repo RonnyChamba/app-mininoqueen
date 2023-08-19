@@ -3,6 +3,7 @@ package com.app.mininoqueen.adapters;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.mininoqueen.R;
 import com.app.mininoqueen.modelos.Product;
+import com.app.mininoqueen.modelos.ProductSugerido;
 import com.app.mininoqueen.util.DataCard;
 import com.bumptech.glide.Glide;
 
@@ -28,7 +30,7 @@ public class AdapterProductSugerencia extends RecyclerView.Adapter<AdapterProduc
 
         View.OnClickListener {
 
-    private List<Product> courses;
+    private List<ProductSugerido> courses;
     private LayoutInflater inflater;
     private View.OnClickListener listener;
 
@@ -36,7 +38,7 @@ public class AdapterProductSugerencia extends RecyclerView.Adapter<AdapterProduc
 
     public AdapterProductSugerencia(
             Context context,
-            List<Product> courses) {
+            List<ProductSugerido> courses) {
 
         this.inflater = LayoutInflater.from(context);
         this.courses = courses;
@@ -56,8 +58,8 @@ public class AdapterProductSugerencia extends RecyclerView.Adapter<AdapterProduc
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        List<Product> itemCourse = courses.get(position);
-        Product itemCourse = courses.get(position);
-        holder.setData(itemCourse);
+        ProductSugerido itemCourse = courses.get(position);
+        holder.setData(itemCourse, position);
     }
 
     @Override
@@ -88,6 +90,7 @@ public class AdapterProductSugerencia extends RecyclerView.Adapter<AdapterProduc
         private final TextView txtVentaStockSug;
         private final TextView txtVentaTotalSug;
         private final EditText txtVentaCantidadkSug;
+        private final TextView txtDetalle;
         private final ImageView imageProduct;
 
         private Button btnReview;
@@ -101,6 +104,7 @@ public class AdapterProductSugerencia extends RecyclerView.Adapter<AdapterProduc
             txtVentaTotalSug = itemView.findViewById(R.id.txtVentaTotalSug);
             txtVentaCantidadkSug = itemView.findViewById(R.id.txtVentCantidadSug);
             imageProduct = itemView.findViewById(R.id.imageVentaProSug);
+            txtDetalle = itemView.findViewById(R.id.detalles_pro_sug);
             btnReview = itemView.findViewById(R.id.btnVentaAddSug);
 
             txtVentaCantidadkSug.addTextChangedListener(new TextWatcher() {
@@ -163,7 +167,7 @@ public class AdapterProductSugerencia extends RecyclerView.Adapter<AdapterProduc
             });
         }
 
-        public void setData(Product product) {
+        public void setData(ProductSugerido product, int position) {
 
             Glide.with(context)
                     .load(product.getImagen())
@@ -196,10 +200,20 @@ public class AdapterProductSugerencia extends RecyclerView.Adapter<AdapterProduc
                 txtVentaStockSug.setText("" + product.getStock());
             }
 
+            Log.e("position", "" + position);
+            if (position == 0) {
 
+                String detallesSugerido = product.getSugerencias().get("detallesAnterior") == null ?
+                        "" : product.getSugerencias().get("detallesAnterior").toString();
+                txtDetalle.setText(detallesSugerido);
+
+            } else if (position > 0) {
+
+                String detallesSiguiente = product.getSugerencias().get("detallesSiguiente") == null ?
+                        "" : product.getSugerencias().get("detallesSiguiente").toString();
+                txtDetalle.setText(detallesSiguiente);
+            }
         }
-
-
     }
 
     public void setOnButtonClickListener(OnButtonClickListener listener) {
@@ -210,7 +224,7 @@ public class AdapterProductSugerencia extends RecyclerView.Adapter<AdapterProduc
         void onButtonClicked(Product product, Map<String, Object> data, View view);
     }
 
-
     private OnButtonClickListener buttonClickListener;
+
 
 }

@@ -45,6 +45,7 @@ public class HomeViewModel extends ViewModel {
 
     public void getCategories() {
         db.collection(NAME_COLLECTION)
+                //.whereEqualTo("intermediario", DataCard.usuario.getCodigo())
                 .get().addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
 

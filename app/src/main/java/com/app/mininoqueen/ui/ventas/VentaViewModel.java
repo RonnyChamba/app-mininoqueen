@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.app.mininoqueen.modelos.Product;
+import com.app.mininoqueen.modelos.ProductSugerido;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class VentaViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    private final MutableLiveData<List<Product>> data = new MutableLiveData<>();
+    private final MutableLiveData<List<ProductSugerido>> data = new MutableLiveData<>();
 
     public VentaViewModel() {
         mText = new MutableLiveData<>();
@@ -23,7 +24,7 @@ public class VentaViewModel extends ViewModel {
         return mText;
     }
 
-    public MutableLiveData<List<Product>> getData() {
+    public MutableLiveData<List<ProductSugerido>> getData() {
         return data;
     }
 }

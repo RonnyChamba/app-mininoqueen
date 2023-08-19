@@ -16,6 +16,8 @@ public class Product implements Serializable {
     private Map<String, Object> categoria;
     private String codigo;
     private String descripcion;
+
+    private String detalles;
     private String imagen;
     private Double precioCompra;
     private Double precioVenta;
@@ -25,7 +27,7 @@ public class Product implements Serializable {
     private Timestamp fecha;
     private int ventas;
 
-    private List<String> productosSugeridos = new ArrayList<>();
+    private List<Map<String, Object>> productosSugeridos = new ArrayList<>();
 
     // Cada producto pertenece a un intermediario
     private String intermedio;
@@ -128,11 +130,11 @@ public class Product implements Serializable {
         this.ventas = ventas;
     }
 
-    public List<String> getProductosSugeridos() {
+    public List<Map<String, Object>>  getProductosSugeridos() {
         return productosSugeridos;
     }
 
-    public void setProductosSugeridos(List<String> productosSugeridos) {
+    public void setProductosSugeridos( List<Map<String, Object>>  productosSugeridos) {
         this.productosSugeridos = productosSugeridos;
     }
 
@@ -142,5 +144,13 @@ public class Product implements Serializable {
 
     public void setIntermedio(String intermedio) {
         this.intermedio = intermedio;
+    }
+
+    public void setDetalles(String detalles) {
+        this.detalles = detalles;
+    }
+
+    public String getDetalles() {
+        return detalles;
     }
 }
