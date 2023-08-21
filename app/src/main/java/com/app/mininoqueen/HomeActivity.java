@@ -197,6 +197,15 @@ public class HomeActivity extends AppCompatActivity {
             navController.navigate(R.id.nav_review_card);
         }
 
+        if (item.getItemId() == R.id.action_settings) {
+
+            mAuth.signOut();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
         return super.onOptionsItemSelected(item);
     }
 

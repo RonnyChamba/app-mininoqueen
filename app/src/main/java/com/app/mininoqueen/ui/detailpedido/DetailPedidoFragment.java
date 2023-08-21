@@ -20,7 +20,7 @@ import com.app.mininoqueen.databinding.FragmentDetailPedidosBinding;
 import com.app.mininoqueen.modelos.Pedido;
 public class DetailPedidoFragment extends Fragment implements View.OnClickListener {
 
-    private FragmentDetailPedidosBinding binding;
+    private FragmentDetailPedidosBinding  binding;
     private Pedido pedido;
 
     private RecyclerView recyclerView;

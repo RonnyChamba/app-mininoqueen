@@ -200,17 +200,17 @@ public class AdapterProductSugerencia extends RecyclerView.Adapter<AdapterProduc
                 txtVentaStockSug.setText("" + product.getStock());
             }
 
-            Log.e("position", "" + position);
+            Log.i("position", "" + position);
+//            Log.i("position", "entro " + product.getSugerencias().get("detallesAnterior"));
             if (position == 0) {
-
                 String detallesSugerido = product.getSugerencias().get("detallesAnterior") == null ?
-                        "" : product.getSugerencias().get("detallesAnterior").toString();
+                        "No hay" : product.getSugerencias().get("detallesAnterior").toString();
                 txtDetalle.setText(detallesSugerido);
 
             } else if (position > 0) {
 
                 String detallesSiguiente = product.getSugerencias().get("detallesSiguiente") == null ?
-                        "" : product.getSugerencias().get("detallesSiguiente").toString();
+                        "No Hay" : product.getSugerencias().get("detallesSiguiente").toString();
                 txtDetalle.setText(detallesSiguiente);
             }
         }

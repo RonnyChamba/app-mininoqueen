@@ -52,6 +52,7 @@ public class CardFragment extends Fragment implements View.OnClickListener {
     private NavController navController;
 
     private Button btnComprar;
+    private Button btnComprarAhora;
 
     private Button btnCancelar;
 
@@ -59,6 +60,11 @@ public class CardFragment extends Fragment implements View.OnClickListener {
 
     private LinearLayout linearLayoutData;
     private LinearLayout linearLayoutDataEmpty;
+
+    private TextView txtTotalGeneral;
+    private TextView txtVendedor;
+
+    private TextView txtAmountProduct;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -74,10 +80,33 @@ public class CardFragment extends Fragment implements View.OnClickListener {
         View root = binding.getRoot();
         setBindingWithViewModel();
         configActionBar();
+        initValues();
         backToHome();
         enableButton();
         drawerProductSuggered();
         return root;
+    }
+
+    private void initValues() {
+
+        if (DataCard.pedido != null) {
+
+            txtTotalGeneral.setText("$ " + DataCard.pedido.getTotal());
+
+            Map<String, Object> vendedor = DataCard.pedido.getIdVendedor();
+
+            if (vendedor != null) {
+                txtVendedor.setText(vendedor.get("nombre").toString());
+            } else {
+                txtVendedor.setText("Sin vendedor");
+            }
+
+            // total de productos, no de unidades
+
+            txtAmountProduct.setText(String.valueOf(DataCard.pedido.getProducto().size()));
+
+
+        }
     }
 
     private void enableButton() {
@@ -120,8 +149,14 @@ public class CardFragment extends Fragment implements View.OnClickListener {
         linearLayoutData = binding.linearLayoutData;
         linearLayoutDataEmpty = binding.linearLayoutDataEmpty;
         btnComprar = binding.btnComprar;
+        btnComprarAhora = binding.btnComprarAhora;
         btnCancelar = binding.btnCancelar;
+        txtTotalGeneral = binding.textCliente;
+        txtVendedor = binding.textVendedor;
+        txtAmountProduct = binding.textAmountProd;
+
         btnComprar.setOnClickListener(this);
+        btnComprarAhora.setOnClickListener(this);
         btnCancelar.setOnClickListener(this);
     }
 
@@ -215,7 +250,13 @@ public class CardFragment extends Fragment implements View.OnClickListener {
             savePedido();
         } else if (v.getId() == btnCancelar.getId()) {
             clearCard();
+        } else if (v.getId() == btnComprarAhora.getId()) {
+            redirectToHome();
         }
+    }
+
+    private void redirectToHome() {
+        navController.navigate(R.id.nav_home);
     }
 
     private void clearCard() {
@@ -276,6 +317,7 @@ public class CardFragment extends Fragment implements View.OnClickListener {
                     .update("stock", stock)
                     .addOnSuccessListener(documentReference -> {
 
+                        Log.d("TAG", "Stock de producto actulizado correctamente");
 
                     });
 

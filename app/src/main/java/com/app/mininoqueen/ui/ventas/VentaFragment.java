@@ -251,10 +251,12 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
             DataCard.pedido.setUid(uid);
             DataCard.pedido.setIdCliente(Map.of("uid", DataCard.cliente.getUid(),
                     "nombre", DataCard.cliente.getNombre(),
-                    "documento", DataCard.cliente.getDocumento()));
+                    "documento", DataCard.cliente.getDocumento(),
+                    "telefono", DataCard.cliente.getTelefono()));
 
-            DataCard.pedido.setIdVendedor(Map.of("uid", DataCard.usuario.getUid(),
-                    "nombre", DataCard.usuario.getNombre()));
+            DataCard.pedido.setIdVendedor(
+                    Map.of("uid", DataCard.usuario.getUid(),
+                            "nombre", DataCard.usuario.getNombre()));
 
             DataCard.pedido.getProducto().add(detailItem);
             Snackbar.make(view, "Producto agregado  al carrito", Snackbar.LENGTH_LONG)
@@ -284,11 +286,12 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
 
         productListSugeridos.clear();
         int amountTask = product.getProductosSugeridos().size();
+        Log.i("TAG", "listProductSugeridos: " + product.getProductosSugeridos());
         AtomicInteger count = new AtomicInteger();
 
         if (amountTask > 0) {
             for (Map<String, Object> itemData : product.getProductosSugeridos()) {
-                Log.i("TAG", "listProductSugeridos UID: " + itemData.get("uid"));
+//                Log.i("TAG", "listProductSugeridos UID: " + itemData.get("uid"));
                 db.collection("productos")
                         .document(itemData.get("uid").toString())
                         .get()
@@ -298,16 +301,17 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
                                 if (product != null) {
                                     product.setUid(task.getResult().getId());
                                     product.setSugerencias(itemData);
+                                    count.set(count.get() + 1);
                                     Log.i("TAG", "listProductSugeridos: " + product.getDescripcion());
                                     productListSugeridos.add(product);
+                                    viewModel.getData().postValue(productListSugeridos);
                                 } else {
+                                    count.set(count.get() + 1);
                                     Log.i("TAG", "listProductSugeridos: " + "es nulo");
                                 }
                             }
-                            count.set(count.get() + 1);
-
                             if (count.get() == amountTask) {
-                                viewModel.getData().postValue(productListSugeridos);
+//                                viewModel.getData().postValue(productListSugeridos);
                             }
                             // Marcar una consulta como completada
 //                            latch.countDown();
@@ -331,7 +335,6 @@ public class VentaFragment extends Fragment implements View.OnClickListener {
         AdapterProductSugerencia productAdapter = new AdapterProductSugerencia(context, productListSugeridos);
 //        adapterPlanning = new AdapterPlanning(getContext(), planifications);
         recyclerView.setAdapter(productAdapter);
-
 
 
         // click en el boton subir del item

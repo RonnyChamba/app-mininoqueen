@@ -11,7 +11,8 @@
         android:id="@+id/layoutComprasData"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleView"
@@ -35,18 +36,49 @@
     <LinearLayout
         android:id="@+id/layoutComprasDataEmpty"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:src="@drawable/image_compras" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="No hay compras registradas"
-            android:textSize="20sp"
+            android:textAlignment="center"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/btnComprarAhora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Comprar ahora"
+
+            />
     </LinearLayout>
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/layoutComprasDataEmpty"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:visibility="visible">-->
+
+    <!--        <TextView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="No hay compras registradas"-->
+    <!--            android:textSize="20sp"-->
+    <!--            android:textStyle="bold" />-->
+
+    <!--    </LinearLayout>-->
 
 
 </LinearLayout>

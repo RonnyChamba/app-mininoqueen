@@ -17,7 +17,8 @@
             android:id="@+id/linearLayoutData"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <!--            -->
 
@@ -27,38 +28,65 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Vendedor" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textVendedor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pepe Maria" />
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Vendedor"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Codigo" />
+                    <TextView
+                        android:id="@+id/textVendedor"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/textCode"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="dd8f7cbd-3e8a-42ef-a33f-36ecf432f52a" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cantidad Productos" />
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Pedido"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textAmountProd"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/textCode"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="dd8f7cbd-3e8a-42ef-a33f-36ecf432f52a" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="100" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="# Productos"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textAmountProd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100" />
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/textCliente"
@@ -80,12 +108,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnCancelar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
                     android:text="Cancelar" />
 
                 <Button
@@ -101,24 +131,27 @@
 
         </LinearLayout>
 
+        <!--        android:visibility="gone"-->
         <LinearLayout
             android:id="@+id/linearLayoutDataEmpty"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="No hay productos"/>
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:src="@drawable/cartempty" />
+
+            <Button
+                android:id="@+id/btnComprarAhora"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/logo"
+                android:layout_marginTop="20dp"
+                android:text="Comprar ahora"
+
                 />
         </LinearLayout>
 

@@ -51,8 +51,9 @@ public class CuidadoPersonalFragment extends Fragment {
         binding = FragmentCuidadoPersonalBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         setBindingWidgets();
-        subscribeToModel();
         initValues();
+        subscribeToModel();
+
 
         return root;
     }
@@ -61,7 +62,7 @@ public class CuidadoPersonalFragment extends Fragment {
 
         recyclerView = binding.recycleView;
         tvTotal = binding.tvTotalCompras;
-        layoutPedidosData = binding.layoutComprasDataEmpty;
+        layoutPedidosData = binding.layoutComprasData;
         layoutPedidosDataEmpty = binding.layoutComprasDataEmpty;
         context = getContext();
     }

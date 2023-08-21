@@ -112,13 +112,12 @@ public class AdapterCard extends RecyclerView.Adapter<AdapterCard.ViewHolder> im
 
         public void setData(Map<String, Object> item) {
 
-
             textDescription.setText(item.get("descripcion").toString());
             textPrice.setText(item.get("precio").toString());
             textAmount.setText(item.get("cantidad").toString());
             textTotal.setText(item.get("total").toString());
 
-            String url = item.get("image") == null ? "" : Objects.requireNonNull(item.get("image")).toString();
+            String url = item.get("imagen") == null ? "" : Objects.requireNonNull(item.get("imagen")).toString();
 
             if (!url.isEmpty() && !url.equals("null")) {
                 // Cargar la imagen en el ImageView usando Glide
