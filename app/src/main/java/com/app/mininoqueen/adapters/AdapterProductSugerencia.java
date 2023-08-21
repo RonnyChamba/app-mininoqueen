@@ -204,13 +204,13 @@ public class AdapterProductSugerencia extends RecyclerView.Adapter<AdapterProduc
 //            Log.i("position", "entro " + product.getSugerencias().get("detallesAnterior"));
             if (position == 0) {
                 String detallesSugerido = product.getSugerencias().get("detallesAnterior") == null ?
-                        "No hay" : product.getSugerencias().get("detallesAnterior").toString();
+                        "" : product.getSugerencias().get("detallesAnterior").toString();
                 txtDetalle.setText(detallesSugerido);
 
             } else if (position > 0) {
 
                 String detallesSiguiente = product.getSugerencias().get("detallesSiguiente") == null ?
-                        "No Hay" : product.getSugerencias().get("detallesSiguiente").toString();
+                        "" : product.getSugerencias().get("detallesSiguiente").toString();
                 txtDetalle.setText(detallesSiguiente);
             }
         }

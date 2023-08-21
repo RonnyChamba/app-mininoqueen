@@ -5,16 +5,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.mininoqueen.R;
 import com.app.mininoqueen.adapters.AdapterCompras;
 import com.app.mininoqueen.adapters.AdapterPedido;
 import com.app.mininoqueen.databinding.FragmentCuidadoPersonalBinding;
@@ -43,6 +48,10 @@ public class CuidadoPersonalFragment extends Fragment {
     private LinearLayout layoutPedidosData;
     private LinearLayout layoutPedidosDataEmpty;
 
+    private Button btnComprarAhora;
+
+    private NavController navController;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         cuidadoPersonalViewModel =
@@ -62,9 +71,23 @@ public class CuidadoPersonalFragment extends Fragment {
 
         recyclerView = binding.recycleView;
         tvTotal = binding.tvTotalCompras;
+        btnComprarAhora = binding.btnComprarAhora;
         layoutPedidosData = binding.layoutComprasData;
         layoutPedidosDataEmpty = binding.layoutComprasDataEmpty;
         context = getContext();
+
+        btnComprarAhora.setOnClickListener(v -> {
+
+            navController.navigate(R.id.nav_home);
+
+        });
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        // Obtener la referencia al controlador de navegacion
+        navController = Navigation.findNavController(view);
     }
 
     private void initValues() {
