@@ -7,11 +7,11 @@
 
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/baseline_category_24"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/baseline_local_grocery_store_24"
             android:title="@string/menu_gallery" />
 <!--        <item-->
         <!--            android:id="@+id/nav_slideshow"-->
@@ -19,16 +19,22 @@
         <!--            android:title="@string/menu_slideshow" />-->
         <item
             android:id="@+id/nav_pedidos"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/baseline_fact_check_24"
             android:title="@string/menu_pedidos" />
         <item
             android:id="@+id/nav_cuidado_personal"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_cuidado_personal" />
 
+
+        <item
+            android:id="@+id/nav_tipo_piel"
+            android:icon="@drawable/baseline_face_24"
+            android:title="@string/menu_tipo_piel" />
+
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/baseline_logout_24"
             android:title="@string/menu_logout" />
     </group>
 </menu>
